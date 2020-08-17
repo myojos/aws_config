@@ -22,6 +22,12 @@ sudo sed -i '0,/-1/s//ask-1/' /etc/xrdp/xrdp.ini
 
 sudo service xrdp restart
 
+# install python
+sudo apt-get install python3.7
+curl -O https://bootstrap.pypa.io/get-pip.py
+python3 get-pip.py --user
+pip install awsebcli --upgrade --user
+
 # install Android Virtual device
 sudo apt-get install openjdk-8-jdk
 
@@ -50,9 +56,16 @@ sudo ./sdkmanager "platforms;android-25"
 
 ./avdmanager -v create avd -f -n ojos -k "system-images;android-25;google_apis;armeabi-v7a"
 
+##########################################################
+#####           Modify config.ini                    #####
+##########################################################
+
 # Run Android emulator
 cd ../../../platform-tools
 ./adb start-server
 
 cd ../emulator
 ./emulator -memory 1024 -avd ojosfinal -no-audio -gpu swiftshader_indirect -show-kernel -no-snapshot-load
+
+cd ../platform-tools
+./adb -s emulator-5554 shell "su root pm disable com.google.android.googlequicksearchbox"
