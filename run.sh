@@ -25,12 +25,8 @@ sudo service xrdp restart
 # install Android Virtual device
 sudo apt-get install openjdk-8-jdk
 
-############################################
-# download command line tools from google 
-############################################
-sudo apt-get install firefox
-
-##############################################
+wget https://dl.google.com/android/repository/commandlinetools-linux-6609375_latest.zip
+sudo cp commandlinetools-linux-6609375_latest.zip /opt/android/sdk/sdk.zip
 
 sudo mkdir /opt/android
 sudo mkdir /opt/android/sdk
